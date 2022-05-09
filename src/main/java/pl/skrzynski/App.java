@@ -7,6 +7,7 @@ import pl.skrzynski.creditcard.NameProvider;
 import pl.skrzynski.productcatalog.MapProductStorage;
 import pl.skrzynski.productcatalog.ProductCatalog;
 import pl.skrzynski.productcatalog.ProductStorage;
+import pl.skrzynski.sales.Sales;
 
 import java.math.BigDecimal;
 
@@ -41,5 +42,10 @@ public class App {
         productCatalog.publish(productId2);
 
         return productCatalog;
+    }
+
+    @Bean
+    Sales createSales() {
+        return new Sales();
     }
 }
