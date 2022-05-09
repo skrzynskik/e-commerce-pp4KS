@@ -7,7 +7,7 @@ public class CreditCard {
 
     public void assignCreditLimit(BigDecimal newCreditLimit) {
         if (this.initialLimit == null) {
-            throw new CantAssignLimitTwiceException();
+            throw new CantAssignLimtiTwiceException();
         }
         this.initialLimit = newCreditLimit;
 

@@ -38,7 +38,7 @@ public class CreditCardTest {
         try {
             creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
             fail("it should throw exception");
-        } catch (CantAssignLimitTwiceException e) {
+        } catch (CantAssignLimtiTwiceException e) {
             assertTrue(true);
         }
     }
@@ -48,7 +48,7 @@ public class CreditCardTest {
         CreditCard creditCard = new CreditCard();
         creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
 
-        assertThrows(CantAssignLimitTwiceException.class, () -> {
+        assertThrows(CantAssignLimtiTwiceException.class, () -> {
             creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
         });
     }
