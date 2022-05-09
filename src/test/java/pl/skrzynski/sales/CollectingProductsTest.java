@@ -1,5 +1,6 @@
 package pl.skrzynski.sales;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -8,6 +9,13 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CollectingProductsTest {
+
+    CartStorage cartStorage;
+
+    @BeforeEach
+    void setup() {
+        cartStorage = new CartStorage();
+    }
 
     @Test
     void allowsToAddProduct() {
@@ -18,6 +26,18 @@ public class CollectingProductsTest {
         sales.addToCart(customerId, productId);
 
         thereIsXProductsInCustomersCart(customerId, 1);
+    }
+
+    @Test
+    void allowsToAddProductAndRetrieveAnOffer() {
+        String productId = thereIsProduct("lego", BigDecimal.TEN);
+        String customerId = thereIsCustomer();
+        Sales sales = thereIsSalesModule();
+
+        sales.addToCart(customerId, productId);
+        Offer offer  = sales.getCurrentOffer(customerId);
+
+        assertEquals(BigDecimal.TEN, offer);
     }
 
 
@@ -54,11 +74,14 @@ public class CollectingProductsTest {
     }
 
     private void thereIsXProductsInCustomersCart(String customerId, int expectedItemsCount) {
-
+        int realItemsCount = cartStorage.getForCustomer(customerId)
+                .get()
+                .getItemsCount();
+        assertEquals(expectedItemsCount, realItemsCount);
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales();
+        return new Sales(cartStorage, new ProductDetailsProvider());
     }
 
     private String thereIsProduct(String id, BigDecimal price) {

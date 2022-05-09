@@ -7,6 +7,8 @@ import pl.skrzynski.creditcard.NameProvider;
 import pl.skrzynski.productcatalog.MapProductStorage;
 import pl.skrzynski.productcatalog.ProductCatalog;
 import pl.skrzynski.productcatalog.ProductStorage;
+import pl.skrzynski.sales.CartStorage;
+import pl.skrzynski.sales.ProductDetailsProvider;
 import pl.skrzynski.sales.Sales;
 
 import java.math.BigDecimal;
@@ -46,6 +48,6 @@ public class App {
 
     @Bean
     Sales createSales() {
-        return new Sales();
+        return new Sales(new CartStorage(), new ProductDetailsProvider());
     }
 }
