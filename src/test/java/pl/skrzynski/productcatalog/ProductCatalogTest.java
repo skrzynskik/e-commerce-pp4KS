@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductCatalogTest {
 
@@ -30,7 +31,7 @@ public class ProductCatalogTest {
         ProductCatalog catalog = thereIsProductCatalog();
         String productId = catalog.addProduct("lego-set", "Nice one");
 
-        assertThrows(pl.jkanclerz.productcatalog.CantPublishProductException.class, () -> {
+        assertThrows(CantPublishProductException.class, () -> {
             catalog.publish(productId);
         });
     }
@@ -51,7 +52,7 @@ public class ProductCatalogTest {
         String productId = catalog.addProduct("lego-set", "Nice one");
         catalog.assignPrice(productId, BigDecimal.valueOf(10.10));
 
-        assertThrows(pl.jkanclerz.productcatalog.CantPublishProductException.class, () -> {
+        assertThrows(CantPublishProductException.class, () -> {
             catalog.publish(productId);
         });
     }

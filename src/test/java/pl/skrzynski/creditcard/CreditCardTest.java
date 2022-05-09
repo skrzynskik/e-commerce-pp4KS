@@ -1,9 +1,10 @@
 package pl.skrzynski.creditcard;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditCardTest {
 
@@ -37,7 +38,7 @@ public class CreditCardTest {
         try {
             creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
             fail("it should throw exception");
-        } catch (CantAssignLimitTwiceException e) {
+        } catch (CantAssignLimtiTwiceException e) {
             assertTrue(true);
         }
     }
@@ -47,7 +48,7 @@ public class CreditCardTest {
         CreditCard creditCard = new CreditCard();
         creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
 
-        assertThrows(CantAssignLimitTwiceException.class, () -> {
+        assertThrows(CantAssignLimtiTwiceException.class, () -> {
             creditCard.assignCreditLimit(BigDecimal.valueOf(2000));
         });
     }
