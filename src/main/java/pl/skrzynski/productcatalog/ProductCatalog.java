@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class ProductCatalog {
     Map<String, ProductData> products;
-    public ProductCatalog() {
+    public ProductCatalog(MapProductStorage mapProductStorage) {
         this.products = new HashMap<>();
     }
 

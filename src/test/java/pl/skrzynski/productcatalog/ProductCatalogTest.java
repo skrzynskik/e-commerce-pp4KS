@@ -30,7 +30,7 @@ public class ProductCatalogTest {
         ProductCatalog catalog = thereIsProductCatalog();
         String productId = catalog.addProduct("lego-set", "Nice one");
 
-        assertThrows(CantPublishProductException.class, () -> {
+        assertThrows(pl.jkanclerz.productcatalog.CantPublishProductException.class, () -> {
             catalog.publish(productId);
         });
     }
@@ -51,7 +51,7 @@ public class ProductCatalogTest {
         String productId = catalog.addProduct("lego-set", "Nice one");
         catalog.assignPrice(productId, BigDecimal.valueOf(10.10));
 
-        assertThrows(CantPublishProductException.class, () -> {
+        assertThrows(pl.jkanclerz.productcatalog.CantPublishProductException.class, () -> {
             catalog.publish(productId);
         });
     }
@@ -72,6 +72,7 @@ public class ProductCatalogTest {
 
 
     private ProductCatalog thereIsProductCatalog() {
-        return new ProductCatalog();
+
+        return new ProductCatalog(new MapProductStorage());
     }
 }
